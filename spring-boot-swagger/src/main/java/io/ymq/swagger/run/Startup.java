@@ -18,6 +18,7 @@ public class Startup {
         SpringApplication.run(Startup.class, args);
 
         /**
+         * 网上写的 http://127.0.0.1:8080/swagger-v2/docs.html
          *
          * 中文 http://127.0.0.1:8080/swagger/index.html
          *
