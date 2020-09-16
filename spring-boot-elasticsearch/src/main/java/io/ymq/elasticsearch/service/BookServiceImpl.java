@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 描述:
@@ -34,7 +35,9 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book findOne(String id) {
-        return bookRepository.findOne(id);
+        Optional<Book> optionalBook = bookRepository.findById(id);
+        return optionalBook.get();
+        // return bookRepository.findOne(id);
     }
 
     @Override

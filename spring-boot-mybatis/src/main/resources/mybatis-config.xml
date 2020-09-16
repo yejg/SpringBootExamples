@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration   
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<!-- 打印查询语句 -->
+		<setting name="logImpl" value="STDOUT_LOGGING" />
+	</settings>
+
+	<!-- mapper已经通过@EnableJdbcPlugin注解配置，这里不再需要配置
+			参考 org.mybatis.spring.SqlSessionFactoryBean -->
+	<!-- <mappers> -->
+	<!-- <mapper resource="com/a/b/c/dao/BusinessInfoDaoMapper.xml" /> -->
+	<!-- </mappers> -->
+</configuration>

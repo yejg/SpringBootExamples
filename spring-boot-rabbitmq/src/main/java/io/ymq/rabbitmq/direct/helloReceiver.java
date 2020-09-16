@@ -1,6 +1,7 @@
 package io.ymq.rabbitmq.direct;
 
-import org.springframework.amqp.rabbit.annotation.Queue;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
@@ -15,8 +16,11 @@ import org.springframework.stereotype.Component;
 @RabbitListener(queues = "hello")
 public class helloReceiver {
 
+    Logger logger = LoggerFactory.getLogger(helloReceiver.class);
+
     @RabbitHandler
     public void process(String message) {
         System.out.println("接收者 helloReceiver," + message);
+        logger.info("接收者 helloReceiver[{}]", message);
     }
 }

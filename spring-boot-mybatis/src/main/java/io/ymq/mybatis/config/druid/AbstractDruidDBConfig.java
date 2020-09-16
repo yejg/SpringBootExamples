@@ -37,7 +37,7 @@ public abstract class AbstractDruidDBConfig {
 
     public DruidDataSource createDataSource(String url, String username, String password) {
         if (StringUtils.isEmpty(url)) {
-            System.out.println(
+            logger.error(
                     "Your database connection pool configuration is incorrect!" + " Please check your Spring profile");
             throw new ApplicationContextException("Database connection pool is not configured correctly");
         }
@@ -66,6 +66,7 @@ public abstract class AbstractDruidDBConfig {
             logger.error("druid configuration initialization filter", e);
         }
         datasource.setConnectionProperties(druidDbProperties.getConnectionProperties());
+
         return datasource;
 
     }

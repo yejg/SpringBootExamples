@@ -5,6 +5,6 @@ if current + 1 > limit then --如果超出限流大小
    return 0
 else  --请求数+1，并设置2秒过期
    redis.call("INCRBY", key,"1")
-   redis.call("expire", key,"2")
+   redis.call("expire", key,ARGV[1])
    return current + 1
 end

@@ -1,13 +1,14 @@
 package io.ymq.elasticsearch.config;
 
-
 import org.elasticsearch.client.Client;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.common.transport.TransportAddress;
+import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
@@ -53,14 +54,17 @@ public class ElasticsearchConfig {
                 .put("thread_pool.search.size", Integer.parseInt(poolSize))//增加线程池个数，暂时设为5
                 .build();
 
-        return TransportClient.builder()
-                .settings(esSettings)
-                .build()
-                .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(hostName), Integer.parseInt(port)));
+        // return TransportClient.builder()
+        //         .settings(esSettings)
+        //         .build()
+        //         .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(hostName), Integer.parseInt(port)));
+        TransportClient client = new PreBuiltTransportClient(esSettings).addTransportAddress(new TransportAddress(InetAddress.getByName(hostName), Integer.parseInt(port)));
+        return client;
     }
 
+    @Primary
     @Bean
-    public ElasticsearchOperations elasticsearchTemplate() throws Exception {
+    public ElasticsearchOperations elasticsearchTemplate1() throws Exception {
         return new ElasticsearchTemplate(client());
     }
 

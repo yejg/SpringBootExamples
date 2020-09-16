@@ -17,12 +17,12 @@ import java.util.*;
  **/
 @RestController
 @RequestMapping("/user")
-@Api(value = "YmqController 测试", description = "RESTful API")
+@Api(value = "YmqController 测试", description = "RESTful API", tags={"121212","fdsftf"})
 public class YmqController {
 
     static Map<Long, User> users = Collections.synchronizedMap(new HashMap<Long, User>());
 
-    @ApiOperation(value="获取用户列表", notes="")
+    @ApiOperation(value="获取用户列表", notes="123")
     @RequestMapping(value={""}, method= RequestMethod.GET)
     public List<User> getUserList() {
         List<User> r = new ArrayList<User>(users.values());

@@ -15,6 +15,8 @@ import javax.annotation.Resource;
 @Repository
 public class YmqOneBaseDao extends BaseDao {
 
+    // 这里是 dao指定 sqlSessionFactorYmqOne（创建自DBOneConfiguration）
+    // XPE 通过 AbstractRoutingDataSource 实现动态数据源
     @Resource
     public void setSqlSessionFactorYmqOne(SqlSessionFactory sqlSessionFactory) {
         super.setSqlSessionFactory(sqlSessionFactory);

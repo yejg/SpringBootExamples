@@ -39,12 +39,18 @@ public class BaseTests  {
         esTemplate.createIndex(Book.class);
         esTemplate.putMapping(Book.class);
         esTemplate.refresh(Book.class);
+        System.out.println("before...");
+    }
+
+    public void testFindAll() {
+        Iterable<Book> all = bookService.findAll();
+        all.forEach(book -> System.out.println(book));
     }
 
     @Test
     public void testSave() {
 
-        Book book = new Book("1001", "Elasticsearch Basics", "Rambabu Posa", "23-FEB-2017");
+        Book book = new Book("1001", "Elasticsearch Basics2", "Rambabu Posa", "23-FEB-2017");
         Book testBook = bookService.save(book);
 
         assertNotNull(testBook.getId());
@@ -56,8 +62,9 @@ public class BaseTests  {
 
     @Test
     public void testFindOne() {
-
-        Book book = new Book("1001", "Elasticsearch Basics", "Rambabu Posa", "23-FEB-2017");
+        System.out.println("testFindOne...");
+        testFindAll();
+        Book book = new Book("1001", "Elasticsearch Basics222", "Rambabu Posa", "23-FEB-2017");
         bookService.save(book);
 
         Book testBook = bookService.findOne(book.getId());
@@ -66,7 +73,7 @@ public class BaseTests  {
         assertEquals(testBook.getTitle(), book.getTitle());
         assertEquals(testBook.getAuthor(), book.getAuthor());
         assertEquals(testBook.getReleaseDate(), book.getReleaseDate());
-
+        testFindAll();
     }
 
     @Test

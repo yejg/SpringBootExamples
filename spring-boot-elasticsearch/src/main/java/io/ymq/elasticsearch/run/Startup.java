@@ -3,6 +3,7 @@ package io.ymq.elasticsearch.run;
 import io.ymq.elasticsearch.model.Book;
 import io.ymq.elasticsearch.service.BookService;
 import org.elasticsearch.client.Client;
+import org.elasticsearch.common.settings.Settings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -52,11 +53,13 @@ public class Startup implements CommandLineRunner {
 
         System.out.println("--ElasticSearch-->");
         Client client = es.getClient();
-        Map<String, String> asMap = client.settings().getAsMap();
+        Settings settings = client.settings();
 
-        asMap.forEach((k, v) -> {
-            System.out.println(k + " = " + v);
-        });
+        // Map<String, String> asMap = client.settings().getAsMap();
+        //
+        // asMap.forEach((k, v) -> {
+        //     System.out.println(k + " = " + v);
+        // });
         System.out.println("<--ElasticSearch--");
     }
 
